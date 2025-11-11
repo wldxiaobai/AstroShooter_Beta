@@ -11,6 +11,15 @@ public class LoadRoom : MonoBehaviour
     // 防抖：防止触发多次加载
     private bool loading;
 
+    public static void LoadScene(string sceneName)
+    {
+        // 创建一个临时的 GameObject 来挂载 LoadRoom 组件
+        GameObject loaderObject = new GameObject("SceneLoader");
+        LoadRoom loader = loaderObject.AddComponent<LoadRoom>();
+        loader.sceneToLoad = sceneName;
+        loader.GetLoading();
+    }
+
     public void GetLoading()
     {
         // 若已在加载则忽略
