@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CloseCanvas : MonoBehaviour
@@ -8,6 +9,6 @@ public class CloseCanvas : MonoBehaviour
 
     public void CloseTheCanvas()
     {
-        canvasToClose.SetActive(false);
+        Destroy(canvasToClose);
     }
 }

@@ -22,7 +22,7 @@ public class SupernovaLock : MonoBehaviour
         else
         {
             //œ‘ æ–≈œ¢
-            canvasToOpen.SetActive(true);
+            Instantiate(canvasToOpen);
         }
     }
 }
