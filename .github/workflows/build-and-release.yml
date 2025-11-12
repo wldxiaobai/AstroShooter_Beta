@@ -1,0 +1,142 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g., v1.0.0)'
+        required: false
+        default: ''
+
+env:
+  UNITY_VERSION: 2022.3.62f2c1
+
+jobs:
+  build:
+    name: Build for ${{ matrix.targetPlatform }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneWindows64
+          - StandaloneLinux64
+          - StandaloneOSX
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Cache Library
+        uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-${{ matrix.targetPlatform }}-
+            Library-
+
+      - name: Free Disk Space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+
+      - name: Build Unity Project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          buildName: AstroShooter_Beta
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
+          retention-days: 7
+
+  create-release:
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: builds
+
+      - name: Prepare release files
+        run: |
+          cd builds
+          # Zip Windows build
+          if [ -d "Build-StandaloneWindows64" ]; then
+            cd Build-StandaloneWindows64
+            zip -r ../AstroShooter_Beta-Windows.zip .
+            cd ..
+          fi
+          # Zip Linux build
+          if [ -d "Build-StandaloneLinux64" ]; then
+            cd Build-StandaloneLinux64
+            zip -r ../AstroShooter_Beta-Linux.zip .
+            cd ..
+          fi
+          # Zip macOS build
+          if [ -d "Build-StandaloneOSX" ]; then
+            cd Build-StandaloneOSX
+            zip -r ../AstroShooter_Beta-macOS.zip .
+            cd ..
+          fi
+          cd ..
+
+      - name: Determine version
+        id: version
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]] && [[ -n "${{ github.event.inputs.version }}" ]]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          elif [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+          else
+            echo "version=v$(date +'%Y.%m.%d-%H%M%S')" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: AstroShooter Beta ${{ steps.version.outputs.version }}
+          draft: false
+          prerelease: false
+          files: |
+            builds/AstroShooter_Beta-Windows.zip
+            builds/AstroShooter_Beta-Linux.zip
+            builds/AstroShooter_Beta-macOS.zip
+          body: |
+            ## AstroShooter Beta Release ${{ steps.version.outputs.version }}
+            
+            ### Downloads
+            - **Windows**: AstroShooter_Beta-Windows.zip
+            - **Linux**: AstroShooter_Beta-Linux.zip
+            - **macOS**: AstroShooter_Beta-macOS.zip
+            
+            ### Changes
+            Automated build from commit ${{ github.sha }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
