@@ -9,7 +9,7 @@ using UnityEngine;
 public class LevelControl : Singleton<LevelControl>
 {
     // 关卡完成状态记录
-    private Dictionary<string, bool> isCompleted = new Dictionary<string, bool>()
+    private static Dictionary<string, bool> isCompleted = new Dictionary<string, bool>()
     {
         {"AsteroidBelt", false},
         {"GrassPlanet", false},
@@ -21,7 +21,7 @@ public class LevelControl : Singleton<LevelControl>
     };
 
     // 标记关卡为已完成
-    public void CompleteLevel(string levelName)
+    public static void CompleteLevel(string levelName)
     {
         if (isCompleted.ContainsKey(levelName))
         {
@@ -35,7 +35,7 @@ public class LevelControl : Singleton<LevelControl>
     }
 
     // 检查关卡是否已完成
-    public bool IsLevelCompleted(string levelName)
+    public static bool IsLevelCompleted(string levelName)
     {
         if (isCompleted.ContainsKey(levelName))
         {
