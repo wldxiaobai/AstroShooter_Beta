@@ -8,6 +8,7 @@ public class Dash : MonoBehaviour
     public float dashDuration = 0.2f;        // 冲刺持续时间
     public float cooldown = 0.5f;            // 冷却时间
     public LayerMask obstacleLayers;         // 障碍物层级
+    public KeyCode launchKey = KeyCode.Space;// 冲刺按键
 
     [Header("无敌效果")]
     public Material invincibleMaterial;      // 无敌时的材质（虚化效果）
@@ -20,11 +21,10 @@ public class Dash : MonoBehaviour
     private Collider2D playerCollider;       // 玩家2D碰撞体
     private Vector2 lastMoveDirection;       // 记录最后移动方向
     private Rigidbody2D rb;                  // 2D刚体组件
-    LevelControl lc = LevelControl.Instance; // 获取关卡控制单例
     void Start()
     {
        
-        if (!lc.IsLevelCompleted("AsteroidBelt"))
+        if (!LevelControl.IsLevelCompleted("AsteroidBelt"))
         {
             // 前置关卡完成，设置为可交互
             this.enabled = false;
@@ -56,7 +56,7 @@ public class Dash : MonoBehaviour
         UpdateMoveDirection();
 
         // 检测空格键按下且不在冷却中
-        if (Input.GetKeyDown(KeyCode.Space) && !isDashing && !isCooldown)
+        if (Input.GetKeyDown(launchKey) && !isDashing && !isCooldown)
         {
             StartDash();
         }
@@ -120,7 +120,7 @@ public class Dash : MonoBehaviour
         }
 
         // 启用无敌状态
-        if (lc.IsLevelCompleted("LightningPlanet"))
+        if (LevelControl.IsLevelCompleted("LightningPlanet"))
         {
             // 前置关卡完成，设置为可交互
             SetInvincible(true);

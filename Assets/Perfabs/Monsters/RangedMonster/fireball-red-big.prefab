@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8201812594659695644}
   m_Layer: 0
   m_Name: fireball-red-big
-  m_TagString: Bullet
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

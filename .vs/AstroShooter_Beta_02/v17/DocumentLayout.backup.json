@@ -3,12 +3,32 @@
   "WorkspaceRootPath": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|d:\\games\\unitygames\\astroshooter_beta_02\\assets\\scripts\\ui\\healthbarui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\healthbarui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|d:\\games\\unitygames\\astroshooter_beta_02\\assets\\scripts\\player\\bullet\\shot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\bullet\\shot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|d:\\games\\unitygames\\astroshooter_beta_02\\assets\\scripts\\player\\hurtorhealanim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\hurtorhealanim.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|d:\\games\\unitygames\\astroshooter_beta_02\\assets\\scripts\\player\\playerskill\\energychargesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerskill\\energychargesystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|d:\\games\\unitygames\\astroshooter_beta_02\\assets\\scripts\\player\\shooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\shooting.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|d:\\games\\unitygames\\astroshooter_beta_02\\assets\\scripts\\global\\levelcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\global\\levelcontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|D:\\Games\\unitygames\\AstroShooter_Beta_02\\assets\\scripts\\player\\playerskill\\parrysystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerskill\\parrysystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|D:\\Games\\unitygames\\AstroShooter_Beta_02\\assets\\scripts\\player\\playerskill\\dash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerskill\\dash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|d:\\games\\unitygames\\astroshooter_beta_02\\assets\\scripts\\global\\playercontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\global\\playercontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +38,97 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HurtOrHealAnim.cs",
-              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\HurtOrHealAnim.cs",
-              "RelativeDocumentMoniker": "Assets\\scripts\\Player\\HurtOrHealAnim.cs",
-              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\HurtOrHealAnim.cs",
-              "RelativeToolTip": "Assets\\scripts\\Player\\HurtOrHealAnim.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Shot.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\Bullet\\Shot.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\Player\\Bullet\\Shot.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\Bullet\\Shot.cs",
+              "RelativeToolTip": "Assets\\scripts\\Player\\Bullet\\Shot.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADUAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T18:09:41.404Z",
+              "WhenOpened": "2025-11-12T19:25:43.917Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HealthBarUI.cs",
-              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\UI\\HealthBarUI.cs",
-              "RelativeDocumentMoniker": "Assets\\scripts\\UI\\HealthBarUI.cs",
-              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\UI\\HealthBarUI.cs",
-              "RelativeToolTip": "Assets\\scripts\\UI\\HealthBarUI.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAAAYwH4AAAAxAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Shooting.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\Shooting.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\Player\\Shooting.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\Shooting.cs",
+              "RelativeToolTip": "Assets\\scripts\\Player\\Shooting.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwB0AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T18:09:14.285Z",
+              "WhenOpened": "2025-11-12T19:23:12.763Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LevelControl.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Global\\LevelControl.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\Global\\LevelControl.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Global\\LevelControl.cs",
+              "RelativeToolTip": "Assets\\scripts\\Global\\LevelControl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T19:14:13.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerControl.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Global\\PlayerControl.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\Global\\PlayerControl.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Global\\PlayerControl.cs",
+              "RelativeToolTip": "Assets\\scripts\\Global\\PlayerControl.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T19:07:55.495Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Dash.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\PlayerSkill\\Dash.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\Player\\PlayerSkill\\Dash.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\PlayerSkill\\Dash.cs",
+              "RelativeToolTip": "Assets\\scripts\\Player\\PlayerSkill\\Dash.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T18:54:20.818Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EnergyChargeSystem.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\PlayerSkill\\EnergyChargeSystem.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\Player\\PlayerSkill\\EnergyChargeSystem.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\PlayerSkill\\EnergyChargeSystem.cs",
+              "RelativeToolTip": "Assets\\scripts\\Player\\PlayerSkill\\EnergyChargeSystem.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAkwHIAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T18:57:12.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ParrySystem.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\PlayerSkill\\ParrySystem.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\Player\\PlayerSkill\\ParrySystem.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Player\\PlayerSkill\\ParrySystem.cs",
+              "RelativeToolTip": "Assets\\scripts\\Player\\PlayerSkill\\ParrySystem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH4AAABSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T18:54:35.829Z",
               "EditorCaption": ""
             },
             {

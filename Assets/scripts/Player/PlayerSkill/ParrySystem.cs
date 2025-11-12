@@ -7,6 +7,7 @@ public class ParrySystem : MonoBehaviour
     [Header("防反设置")]
     public float parryWindow = 0.2f;    // 防反判定时间窗口
     public float cooldownTime = 1f;     // 冷却时间
+    public KeyCode launchKey = KeyCode.F; // 防反按键
 
     private bool isParrying = false;    // 是否正在防反判定期间
     private bool isOnCooldown = false;  // 是否在冷却中
@@ -33,9 +34,8 @@ public class ParrySystem : MonoBehaviour
 
     void HandleInput()
     {
-        LevelControl lc = LevelControl.Instance; // 获取关卡控制单例
         // 按下F键且不在冷却中且通关后触发防反
-        if (Input.GetKeyDown(KeyCode.F) && !isOnCooldown && !isParrying && lc.IsLevelCompleted("WaterPlanet"))
+        if (Input.GetKeyDown(launchKey) && !isOnCooldown && !isParrying && LevelControl.IsLevelCompleted("WaterPlanet"))
         {
             StartParry();
         }
@@ -104,7 +104,7 @@ public class ParrySystem : MonoBehaviour
     {
         if (!isParrying) return;
 
-        if (other.CompareTag("player bullet") || other.CompareTag("Player"))
+        if (other.CompareTag("Friendly Projectile") || other.CompareTag("Player"))
             return;
 
         // 销毁被防反的物体
@@ -124,7 +124,7 @@ public class ParrySystem : MonoBehaviour
 
         GameObject other = collision.gameObject;
 
-        if (other.CompareTag("player bullet") || other.CompareTag("Player"))
+        if (other.CompareTag("Friendly Projectile") || other.CompareTag("Player"))
             return;
 
         Destroy(other);

@@ -9,6 +9,7 @@ public class EnergyChargeSystem : MonoBehaviour
     public KeyCode launchKey = KeyCode.E;          // 发射按键
     public GameObject hugeBulletPrefab;            // 巨大子弹预制体
     public Transform firePoint;                    // 发射点
+    [SerializeField] private bool _debugFull = false; // 调试用，启动时是否满能量
 
     private int currentEnergy = 0;                 // 当前充能值
     private bool full = false;                     // 是否充满
@@ -24,6 +25,9 @@ public class EnergyChargeSystem : MonoBehaviour
 
     void Update()
     {
+        // 调试用，启动时满能量
+        if (_debugFull) currentEnergy = maxEnergy;
+
         // 如果Full为true，强制设置能量为最大值
         if (full && currentEnergy != maxEnergy)
         {
@@ -88,8 +92,27 @@ public class EnergyChargeSystem : MonoBehaviour
     {
         if (hugeBulletPrefab != null && firePoint != null)
         {
-            // 实例化巨大子弹
-            Instantiate(hugeBulletPrefab, firePoint.position, firePoint.rotation);
+            // 实例化子弹并记录在shot变量中以便后续使用
+            var shot = Instantiate(
+                hugeBulletPrefab,
+                transform.position,
+                Quaternion.identity
+                );
+
+            // 计算鼠标位置与玩家位置的偏移量
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            float deltaX = mouseWorld.x - transform.position.x;
+            float deltaY = mouseWorld.y - transform.position.y;
+
+            // 计算角度并设置子弹旋转
+            float angle = Mathf.Atan2(deltaY, deltaX) * Mathf.Rad2Deg;
+            shot.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+            // 给子弹添加初速度
+            Rigidbody2D rb = shot.GetComponent<Rigidbody2D>();
+            rb.velocity = Vector2.zero;
+            rb.angularVelocity = 0;
+            rb.velocity = new Vector2(deltaX, deltaY).normalized * 15f;
 
             // 重置能量
             currentEnergy = 0;

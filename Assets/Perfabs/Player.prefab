@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 5650674073797362711}
   - component: {fileID: 7688991918883022935}
   - component: {fileID: 1406421973597911476}
+  - component: {fileID: -8168688361056556104}
+  - component: {fileID: 452366863707266635}
+  - component: {fileID: 3500762300502670963}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -190,3 +193,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b1658ef811e4644906f77cbae3e31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8168688361056556104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343041688947082025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29ddfd3f774096141906f2471f015a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDistance: 3
+  dashDuration: 0.2
+  cooldown: 0.4
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  launchKey: 32
+  invincibleMaterial: {fileID: 0}
+--- !u!114 &452366863707266635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343041688947082025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73dd7f84aff3d2c4b8d9e992cb6965e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnergy: 100
+  energyPerHit: 1
+  launchKey: 101
+  hugeBulletPrefab: {fileID: 5195675948330245767, guid: 2b5f29d3949bc71449d4d87dce57d5ef, type: 3}
+  firePoint: {fileID: 7368613265820211276}
+  _debugFull: 1
+--- !u!114 &3500762300502670963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343041688947082025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4896c6834aef04a4984040bd3299e973, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parryWindow: 0.2
+  cooldownTime: 1
+  launchKey: 102

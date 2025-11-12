@@ -6,11 +6,19 @@ public class Shot : MonoBehaviour
 {
     [Header("最大存活时间（毫秒）")]
     [SerializeField] private int maxExistTime = 500;
+    [Header("伤害")]
+    [SerializeField] private int damage = 50;
+    [Header("速度")]
+    [SerializeField] private float speed = 10f;
 
     private Coroutine lifeRoutine;
 
     private void OnEnable()
     {
+        // 发射子弹的初速度
+        Vector2 direction = gameObject.GetComponent<Rigidbody2D>().velocity.normalized;
+        gameObject.GetComponent<Rigidbody2D>().velocity = direction * speed;
+
         // 若以后用对象池复用，在 OnEnable 再次启动计时
         lifeRoutine = StartCoroutine(LifeTimer());
     }
@@ -31,17 +39,17 @@ public class Shot : MonoBehaviour
         yield return new WaitForSeconds(maxExistTime / 1000f);
         Destroy(gameObject);
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         // 检测是否击中敌人（这里假设敌人标签为"Enemy"）
         if (other.CompareTag("Enemy"))
         {
             // 查找玩家的充能系统（改为 EnergyChargeSystem）
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            GameObject player = PlayerControl.Player;
             if (player != null)
             {
-                EnergyChargeSystem energySystem = player.GetComponent<EnergyChargeSystem>();
-                if (energySystem != null)
+                if (player.TryGetComponent<EnergyChargeSystem>(out var energySystem))
                 {
                     // 增加充能
                     energySystem.AddEnergy();
@@ -52,24 +60,4 @@ public class Shot : MonoBehaviour
             // Destroy(gameObject); // 如果需要销毁子弹，取消注释
         }
     }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        // 碰撞检测版本
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
-            {
-                EnergyChargeSystem energySystem = player.GetComponent<EnergyChargeSystem>();
-                if (energySystem != null)
-                {
-                    energySystem.AddEnergy();
-                }
-            }
-
-            // Destroy(gameObject); // 如果需要销毁子弹，取消注释
-        }
-    }
-
 }
