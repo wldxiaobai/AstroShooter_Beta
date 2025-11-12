@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1214427237701417104}
   - component: {fileID: 5650674073797362711}
   - component: {fileID: 7688991918883022935}
+  - component: {fileID: 1886583253553923162}
+  - component: {fileID: 8276288349379368716}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -177,3 +179,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotPrefab: {fileID: 6783090878422631698, guid: 5e259b4e387646d49b97b05d97c3d48f, type: 3}
   shotCD: 0.25
+--- !u!114 &1886583253553923162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343041688947082025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29ddfd3f774096141906f2471f015a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDistance: 5
+  dashDuration: 0.2
+  cooldown: 0.5
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  invincibleMaterial: {fileID: 0}
+--- !u!114 &8276288349379368716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343041688947082025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2222b5f616728408c1c10b5e8960d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parryWindow: 0.2
+  cooldownTime: 1

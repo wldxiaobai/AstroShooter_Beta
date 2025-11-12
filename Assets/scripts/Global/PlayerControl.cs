@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 struct RespawnPoint
@@ -10,16 +11,22 @@ struct RespawnPoint
 
 public class PlayerControl : Singleton<PlayerControl>
 {
+    LevelControl lc = LevelControl.Instance; // 获取关卡控制单例
     [Header("主角物体预制体")]
     [SerializeField] private GameObject playerPerfab;
     // 指向主角物体
     public static GameObject Player;
 
     // 血量
-    private static int HealthPoint = 3;
+    //血上限，如果过了极寒星就是5，反之3；
+    private static int HealthPoint = LevelControl.Instance.IsLevelCompleted("GlacierPlanet") ? 5 : 3;
     public static int HP => HealthPoint;
+    
     public static void GetHurt(int damage) { HealthPoint -= damage; }
-
+   //直接用start做回血功能
+   
+            
+        
     // Player物体启用与否
     private static bool enablePlayer = false;
     public static bool EnablePlayer
