@@ -10,11 +10,10 @@ public class SupernovaLock : MonoBehaviour
 
     public void FinalCheck()
     {
-        LevelControl lc = LevelControl.Instance; //获取关卡控制单例
         LoadRoom lr = gameObject.GetComponent<LoadRoom>(); //获取加载房间组件
 
         //检查前置关卡是否完成其中之一
-        if (lc.IsLevelCompleted(preLevel_1) || lc.IsLevelCompleted(preLevel_2))
+        if (LevelControl.IsLevelCompleted(preLevel_1) || LevelControl.IsLevelCompleted(preLevel_2))
         {
             //进入超新星关卡
             lr.GetLoading();

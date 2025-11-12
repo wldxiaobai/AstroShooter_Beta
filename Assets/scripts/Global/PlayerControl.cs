@@ -32,6 +32,7 @@ public class PlayerControl : Singleton<PlayerControl>
     public static GameObject Player;
     // 最大血量
     private static int maxHealthPoint = 3;
+    public static int MaxHP => maxHealthPoint;
 
     // 血量
     private static int HealthPoint = maxHealthPoint;
@@ -59,16 +60,7 @@ public class PlayerControl : Singleton<PlayerControl>
         {
             if (Player != null)
                 Player.SetActive(false);
-
-            if (Instance.deathMessage != null)
-            {
-                Instantiate(Instance.deathMessage);
-                Debug.Log($"{LogTag} Player died.");
-            }
-            else
-            {
-                Debug.LogWarning($"{LogTag} deathMessage prefab is not assigned.");
-            }
+            Instantiate(Instance.deathMessage);
         }
     }
     public static void Heal(int amount)

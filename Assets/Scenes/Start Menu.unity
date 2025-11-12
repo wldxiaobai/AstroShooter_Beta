@@ -1727,6 +1727,7 @@ GameObject:
   - component: {fileID: 2141077179}
   - component: {fileID: 2141077182}
   - component: {fileID: 2141077183}
+  - component: {fileID: 2141077184}
   m_Layer: 0
   m_Name: GlobalSetter
   m_TagString: Untagged
@@ -1791,6 +1792,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TargetPerfab: {fileID: 4128174332007975648, guid: c65fae8c56b1cf447b22e519724bfb9d, type: 3}
   markerId: GlobalPlayer
+--- !u!114 &2141077184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141077178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa312cbe7cbd5a249aa24081416b4cfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetPerfab: {fileID: 6345153568229633155, guid: 865e1bff4d9a1594584326ee91f98f53, type: 3}
+  markerId: GlobalUI
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
