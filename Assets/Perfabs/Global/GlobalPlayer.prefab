@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPerfab: {fileID: 3343041688947082025, guid: 0b04f5e812d48994a9eb9bfd5bedf6e6, type: 3}
+  deathMessage: {fileID: 5700834305850182085, guid: 6dec8346020ca964a876fb014c423b57, type: 3}
 --- !u!114 &4579180859705457388
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 /// <summary>
 /// 这是一个关卡控制单例类，用于管理游戏中各个关卡的完成状态。
-/// 单例：确保全局只有一个实例，跨场景常驻。
+/// 单例：确保全局只有一个静态实例，跨场景常驻。
 /// </summary>
 public class LevelControl : Singleton<LevelControl>
 {
@@ -17,7 +17,7 @@ public class LevelControl : Singleton<LevelControl>
         {"GlacierPlanet", false},
         {"SteamPlanet", false},
         {"FlamePlanet", false},
-        {"LightningPlanet", false}
+        {"LightningPlanet", false} //预留功能：读档
     };
 
     // 标记关卡为已完成

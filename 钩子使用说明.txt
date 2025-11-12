@@ -1,0 +1,477 @@
+（1）**场景数据库访问 API**  
+作用：提供对 `SceneDatabase` 资源的运行时访问，封装场景分类、关卡索引等查询逻辑，避免业务层直接操作 ScriptableObject。
+
+**重要：如何找到场景分类、关卡索引等的数据资源**
+在Unity Project中打开Assets->Resources->SceneDatabase，Inspector中显示的Scene列表中有所有挂载了已入表场景的元素（Element），
+可在表中查看所需场景的属性。
+若要使新建场景入表，只需点击右下角+号，设置新Element挂载的Scene以及各项属性即可。
+
+Category 分类：
+Menu：菜单，玩家物体将在这类场景里被禁用
+Level：关卡，玩家物体将在这类场景里被启用
+Boss：领袖，闲置词条，暂时无用
+Cutscene：过场动画，玩家物体将在这类场景里被禁用
+Other：其他，闲置词条
+
+Level Index：
+记录关卡索引，也即“第几关”
+
+Included In Flow：
+是否加入关卡流，也即“是否加入第某关中的所有房间排成的队伍”
+若某场景是某一关第一个（按表中从上到下的顺序）加入关卡流的，则这个场景将作为“主场景”。
+
+Cached Path/Guid：资源路径/标签，不必关心。
+
+---
+
+**公共成员函数说明：**
+
+（1.1）**数据库访问点**  
+```csharp
+public static SceneDatabase DB
+```
+作用：获取场景数据库实例（惰性加载，首次访问时从 Resources 加载）  
+使用方法：
+```csharp
+var database = SceneDatabaseAPI.DB;
+if (database != null) {
+    // 使用数据库实例
+}
+```
+
+（1.2）**获取关卡场景名称列表**  
+```csharp
+public static IEnumerable<string> GetLevelSceneNames(int levelIndex)
+```
+作用：获取指定关卡编号对应的所有场景名称（不含扩展名）  
+使用方法：
+```csharp
+foreach (string sceneName in SceneDatabaseAPI.GetLevelSceneNames(1)) {
+    Debug.Log($"关卡1包含场景：{sceneName}");
+}
+```
+
+（1.3）**获取主关卡场景名称**  
+```csharp
+public static string GetMainLevelSceneName(int levelIndex)
+```
+作用：获取指定关卡的主场景名称（不存在则返回 null）  
+使用方法：
+```csharp
+string mainScene = SceneDatabaseAPI.GetMainLevelSceneName(1);
+if (mainScene != null) {
+    LoadRoom.LoadScene(mainScene);
+}
+```
+
+（1.4）**获取当前激活场景的关卡编号**  
+```csharp
+public static int? GetActiveLevelIndex()
+```
+作用：获取当前激活场景对应的关卡编号（非关卡场景返回 null）  
+使用方法：
+```csharp
+int? currentLevel = SceneDatabaseAPI.GetActiveLevelIndex();
+if (currentLevel.HasValue) {
+    Debug.Log($"当前在关卡 {currentLevel.Value}");
+}
+```
+
+（1.5）**获取场景分类**  
+```csharp
+public static bool TryGetSceneCategory(string sceneName, out SceneCategory category)
+```
+作用：根据场景名获取其分类（成功返回 true）  
+使用方法：
+```csharp
+if (SceneDatabaseAPI.TryGetSceneCategory("MainMenu", out SceneCategory cat)) {
+    Debug.Log($"MainMenu 的分类是：{cat}");
+}
+```
+
+（1.6）**获取当前激活场景分类**  
+```csharp
+public static bool TryGetActiveSceneCategory(out SceneCategory category)
+```
+作用：获取当前激活场景的分类（成功返回 true）  
+使用方法：
+```csharp
+if (SceneDatabaseAPI.TryGetActiveSceneCategory(out SceneCategory cat)) {
+    Debug.Log($"当前场景分类：{cat}");
+}
+```
+
+（1.7）**获取当前激活场景分类（可空版本）**  
+```csharp
+public static SceneCategory? GetActiveSceneCategory()
+```
+作用：获取当前激活场景的分类（找不到返回 null）  
+使用方法：
+```csharp
+SceneCategory? category = SceneDatabaseAPI.GetActiveSceneCategory();
+if (category.HasValue) {
+    // 处理分类逻辑
+}
+```
+
+（1.8）**判断是否为菜单场景**  
+```csharp
+public static bool IsMenuScene(string sceneName)
+```
+作用：判断指定场景名是否为菜单场景  
+使用方法：
+```csharp
+if (SceneDatabaseAPI.IsMenuScene("MainMenu")) {
+    // 菜单场景的特殊处理
+}
+```
+
+---
+
+**使用要求：**
+- 依赖 `Resources/SceneDatabase.asset` 资源文件
+- 所有方法均为静态调用，无需挂载组件
+- 调用前建议检查返回值是否为 null 或判断操作是否成功
+
+---
+
+（2）**发射冷却管理器**  
+作用：集中管理所有武器/技能的发射冷却，提供基于时间的冷却检查和重置功能。
+
+**公共成员函数说明：**
+
+（2.1）**尝试触发冷却**  
+```csharp
+public static bool TryFire(string key, float cooldown, bool useUnscaled = false)
+```
+作用：检查指定键是否冷却完成，若完成则开始新冷却并返回 true  
+使用方法：
+```csharp
+if (FireCDManager.TryFire("PlayerPrimary", 0.5f)) {
+    // 执行发射逻辑
+}
+```
+
+（2.2）**强制重置冷却**  
+```csharp
+public static void Reset(string key, bool useUnscaled = false)
+```
+作用：立即重置指定键的冷却，使下次 TryFire 必定成功  
+使用方法：
+```csharp
+FireCDManager.Reset("PlayerPrimary"); // 立即重置主武器冷却
+```
+
+（2.3）**获取剩余冷却时间**  
+```csharp
+public static float GetRemaining(string key, bool useUnscaled = false)
+```
+作用：查询指定键的剩余冷却时间（秒）  
+使用方法：
+```csharp
+float remain = FireCDManager.GetRemaining("EnemyLaser");
+Debug.Log($"剩余冷却：{remain}秒");
+```
+
+（2.4）**检查是否可触发**  
+```csharp
+public static bool CanFire(string key, bool useUnscaled = false)
+```
+作用：检查指定键是否可触发（不消耗冷却）  
+使用方法：
+```csharp
+if (FireCDManager.CanFire("PlayerSpecial")) {
+    // 显示技能可用UI
+}
+```
+
+---
+
+（3）**全局实例生成器**  
+作用：确保全局唯一的预制体实例存在，避免重复生成。
+
+**使用方法：**
+- 在场景中挂载 `GlobalCall` 组件
+- 在 Inspector 中指定要生成的预制体和唯一标识
+- 场景加载时会自动检查并生成实例
+
+```csharp
+// 无需代码调用，自动运行
+```
+
+---
+
+（4）**全局标记组件**  
+作用：为 GameObject 提供唯一标识，用于全局实例的查找和识别。
+
+**公共成员说明：**
+
+（4.1）**标识获取**  
+```csharp
+public string Id => markerId;
+```
+作用：获取该实例的唯一标识
+
+（4.2）**设置标识**  
+```csharp
+public void SetId(string id) => markerId = id;
+```
+作用：运行时设置唯一标识  
+使用方法：
+```csharp
+GetComponent<GlobalMarker>().SetId("PlayerManager");
+```
+
+---
+
+（5）**关卡控制管理器**  
+作用：管理游戏中各个关卡的完成状态，提供关卡完成标记和查询功能。
+
+**公共成员函数说明：**
+
+（5.1）**标记关卡完成**  
+```csharp
+public void CompleteLevel(string levelName)
+```
+作用：将指定关卡标记为已完成  
+使用方法：
+```csharp
+LevelControl.Instance.CompleteLevel("GrassPlanet");
+```
+
+（5.2）**检查关卡完成状态**  
+```csharp
+public bool IsLevelCompleted(string levelName)
+```
+作用：查询指定关卡是否已完成  
+使用方法：
+```csharp
+if (LevelControl.Instance.IsLevelCompleted("WaterPlanet")) {
+    // 解锁下一关卡
+}
+```
+
+---
+
+（6）**玩家控制管理器**  
+作用：全局管理玩家实例的生成、血量、重生点和复活流程。
+
+**公共成员函数说明：**
+
+（6.1）**玩家受伤**  
+```csharp
+public static void GetHurt(int damage)
+```
+作用：对玩家造成伤害  
+使用方法：
+```csharp
+PlayerControl.GetHurt(1); // 玩家受到1点伤害
+```
+
+（6.2）**玩家治疗**  
+```csharp
+public static void Heal(int amount)
+```
+作用：恢复玩家血量  
+使用方法：
+```csharp
+PlayerControl.Heal(1); // 玩家恢复1点血量
+```
+
+（6.3）**玩家启用控制**  
+```csharp
+public static bool EnablePlayer { get; set; }
+```
+作用：全局控制玩家 GameObject 的激活状态  
+使用方法：
+```csharp
+PlayerControl.EnablePlayer = false; // 禁用玩家
+PlayerControl.EnablePlayer = true;  // 启用玩家
+```
+
+（6.4）**设置重生点**  
+```csharp
+public static void SetRespawnPoint(Vector3 position, string roomName)
+```
+作用：设置玩家重生位置和场景  
+使用方法：
+```csharp
+PlayerControl.SetRespawnPoint(transform.position, "MainRoom");
+```
+
+（6.5）**清除重生点**  
+```csharp
+public static void ClearRespawnPoint()
+```
+作用：清除已设置的重生点  
+使用方法：
+```csharp
+PlayerControl.ClearRespawnPoint();
+```
+
+（6.6）**玩家复活**  
+```csharp
+public static void Respawn(bool reloadScene = true)
+```
+作用：复活玩家，可选择是否重载场景  
+使用方法：
+```csharp
+PlayerControl.Respawn(true);  // 重载场景复活
+PlayerControl.Respawn(false); // 原地复活
+```
+
+**注意事项：**
+- 所有静态类和方法无需挂载组件即可调用
+- 单例类通过 `Instance` 属性访问
+- 玩家控制需要预先在 Inspector 中指定玩家预制体
+
+---
+
+（7）**泛型单例基类**  
+作用：为 MonoBehaviour 派生类提供单例模式实现，确保全局只有一个实例且跨场景常驻。
+
+**使用方法：**
+```csharp
+// 继承 Singleton 基类
+public class AudioManager : Singleton<AudioManager>
+{
+    protected override void OnSingletonReady()
+    {
+        // 单例就绪后的初始化逻辑
+    }
+}
+
+// 在其他脚本中通过 Instance 访问
+AudioManager.Instance.PlaySound("xxx");
+```
+
+**公共成员说明：**
+
+（7.1）**单例实例访问**  
+```csharp
+public static T Instance => _instance;
+```
+作用：获取该类型的单例实例引用
+
+（7.2）**初始化状态检查**  
+```csharp
+public static bool IsInitialized => _instance != null;
+```
+作用：检查该单例是否已初始化完成  
+使用方法：
+```csharp
+if (AudioManager.IsInitialized) {
+    // 安全使用单例
+}
+```
+
+（7.3）**单例就绪回调**  
+```csharp
+protected virtual void OnSingletonReady()
+```
+作用：单例注册完成后的初始化回调（派生类可重写）  
+使用方法：
+```csharp
+protected override void OnSingletonReady()
+{
+    // 在这里执行单例特有的初始化
+    LoadAudioResources();
+    SetupEventListeners();
+}
+```
+
+**特性：**
+- 自动处理重复实例销毁
+- 自动设置跨场景常驻
+- 自动清理静态引用防止内存泄漏
+- 提供安全的初始化回调时机
+
+---
+
+（8）**场景加载器**  
+作用：统一管理场景加载流程，支持静态调用，在加载前自动处理玩家显隐和重生点逻辑。
+
+**使用方法：**
+
+**方式一：静态调用（推荐）**
+```csharp
+LoadRoom.LoadScene("SceneName");
+```
+
+**方式二：组件挂载**
+- 在 GameObject 上挂载 `LoadRoom` 脚本
+- 在 Inspector 中指定 `sceneToLoad`
+- 通过代码或事件触发：
+```csharp
+// 代码调用
+GetComponent<LoadRoom>().GetLoading();
+
+// 或通过按钮事件直接引用该 GameObject
+```
+
+**公共成员函数说明：**
+
+（8.1）**静态场景加载**  
+```csharp
+public static void LoadScene(string sceneName)
+```
+作用：直接通过静态方法加载指定场景  
+使用方法：
+```csharp
+LoadRoom.LoadScene("MainMenu");
+LoadRoom.LoadScene("Level1");
+```
+
+（8.2）**开始加载流程**  
+```csharp
+public void GetLoading()
+```
+作用：启动场景加载流程（包含玩家状态预处理）  
+使用方法：
+```csharp
+// 在挂载了 LoadRoom 组件的对象上调用
+loadRoomComponent.GetLoading();
+```
+
+**特性：**
+- 自动检测目标场景类型（关卡/菜单）并设置玩家状态
+- 对主关卡场景自动设置重生点
+- 内置防重复加载机制
+- 自动处理无效场景名（回退到默认场景）
+
+---
+
+（9）**画布关闭器**  
+作用：简单的 UI 画布关闭工具，用于关闭指定的 Canvas 或 UI 面板。
+
+**使用方法：**
+
+**方式一：代码调用**
+```csharp
+// 在挂载了 CloseCanvas 脚本的对象上调用
+gameObject.GetComponent<CloseCanvas>().CloseTheCanvas();
+```
+
+**方式二：事件绑定**
+- 在 GameObject 上挂载 `CloseCanvas` 脚本
+- 在 Inspector 中将目标 Canvas 拖拽到 `canvasToClose` 字段
+- 在按钮的 OnClick 事件中引用该 GameObject
+
+**公共成员函数说明：**
+
+（9.1）**关闭画布**  
+```csharp
+public void CloseTheCanvas()
+```
+作用：立即销毁指定的 Canvas 对象  
+使用方法：
+```csharp
+// 直接调用关闭
+closeCanvasComponent.CloseTheCanvas();
+```
+
+**使用场景：**
+- 关闭弹窗窗口
+- 退出设置界面
+- 隐藏开始菜单
+- 任何需要动态关闭 UI 面板的情况
