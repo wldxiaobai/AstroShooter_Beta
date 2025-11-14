@@ -1,7 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|d:\\games\\unitygames\\astroshooter_beta_02\\assets\\scripts\\enemy\\projectile\\testshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\projectile\\testshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|D:\\Games\\unitygames\\AstroShooter_Beta_02\\assets\\scripts\\enemy\\testenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\testenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|D:\\Games\\unitygames\\AstroShooter_Beta_02\\assets\\scripts\\enemy\\enemyset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\enemyset.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|D:\\Games\\unitygames\\AstroShooter_Beta_02\\assets\\scripts\\global\\playercontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\global\\playercontrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|D:\\Games\\unitygames\\AstroShooter_Beta_02\\assets\\scripts\\ui\\healthbarui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{455DACC1-8AFD-2162-9B7B-95AAB724BF0F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\healthbarui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +30,72 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TestShot.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Enemy\\Projectile\\TestShot.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\Enemy\\Projectile\\TestShot.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Enemy\\Projectile\\TestShot.cs",
+              "RelativeToolTip": "Assets\\scripts\\Enemy\\Projectile\\TestShot.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T17:49:57.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TestEnemy.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Enemy\\TestEnemy.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\Enemy\\TestEnemy.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Enemy\\TestEnemy.cs",
+              "RelativeToolTip": "Assets\\scripts\\Enemy\\TestEnemy.cs",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAEwIEAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T12:57:41.703Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EnemySet.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Enemy\\EnemySet.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\Enemy\\EnemySet.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Enemy\\EnemySet.cs",
+              "RelativeToolTip": "Assets\\scripts\\Enemy\\EnemySet.cs",
+              "ViewState": "AgIAALMAAAAAAAAAAAAtwMYAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T12:00:56.511Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HealthBarUI.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\UI\\HealthBarUI.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\UI\\HealthBarUI.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\UI\\HealthBarUI.cs",
+              "RelativeToolTip": "Assets\\scripts\\UI\\HealthBarUI.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAqwGwAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T10:53:10.84Z"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PlayerControl.cs",
+              "DocumentMoniker": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Global\\PlayerControl.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\Global\\PlayerControl.cs",
+              "ToolTip": "D:\\Games\\unitygames\\AstroShooter_Beta_02\\Assets\\scripts\\Global\\PlayerControl.cs",
+              "RelativeToolTip": "Assets\\scripts\\Global\\PlayerControl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T12:19:11.907Z"
             }
           ]
         }
