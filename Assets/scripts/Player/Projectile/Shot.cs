@@ -56,8 +56,12 @@ public class Shot : MonoBehaviour
                 }
             }
 
-            // 这里可以添加击中敌人的其他效果
-            // Destroy(gameObject); // 如果需要销毁子弹，取消注释
+            if(other.gameObject.TryGetComponent<EnemySet>(out EnemySet enemy))
+            {
+                enemy.Hurt(damage);
+                Debug.Log($"[Shot] Bullet hit enemy {other.gameObject.name}, dealt {damage} damage.");
+            }
+            Destroy(gameObject); // 如果需要销毁子弹，取消注释
         }
     }
 }
