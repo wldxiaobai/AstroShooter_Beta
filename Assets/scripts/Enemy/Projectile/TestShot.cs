@@ -39,7 +39,6 @@ public class TestShot : MonoBehaviour
         {
             PlayerControl.GetHurt(1);
             Debug.Log("[TestShot] Hit Player, dealt 1 damage.");
-            Destroy(gameObject); // 如果需要销毁子弹，取消注释
         }
     }
 }

@@ -23,6 +23,15 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 计算鼠标位置与玩家位置的偏移量
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float deltaX = mouseWorld.x - transform.position.x;
+        float deltaY = mouseWorld.y - transform.position.y;
+
+        // 计算角度并设置玩家旋转
+        float angle = Mathf.Atan2(deltaY, deltaX) * Mathf.Rad2Deg;
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, angle);
+
         if (GetMouseButtonGivenCD(0))
         {
             // 实例化子弹并记录在shot变量中以便后续使用
@@ -32,13 +41,7 @@ public class Shooting : MonoBehaviour
                 Quaternion.identity
                 );
 
-            // 计算鼠标位置与玩家位置的偏移量
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            float deltaX = mouseWorld.x - transform.position.x;
-            float deltaY = mouseWorld.y - transform.position.y;
-
             // 计算角度并设置子弹旋转
-            float angle = Mathf.Atan2(deltaY, deltaX) * Mathf.Rad2Deg;
             shot.transform.rotation = Quaternion.Euler(0, 0, angle);
 
             // 给子弹添加初速度

@@ -18,6 +18,9 @@ GameObject:
   - component: {fileID: -8168688361056556104}
   - component: {fileID: 452366863707266635}
   - component: {fileID: 3500762300502670963}
+  - component: {fileID: 8744845146787423748}
+  - component: {fileID: 8838388039309662857}
+  - component: {fileID: -6448499006872503}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -35,7 +38,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -713294306, guid: 30d211a3013dce346a7548a0560e41aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -211,7 +214,7 @@ MonoBehaviour:
   obstacleLayers:
     serializedVersion: 2
     m_Bits: 0
-  launchKey: 32
+  launchKey: 324
   invincibleMaterial: {fileID: 0}
 --- !u!114 &452366863707266635
 MonoBehaviour:
@@ -230,7 +233,7 @@ MonoBehaviour:
   launchKey: 101
   hugeBulletPrefab: {fileID: 5195675948330245767, guid: 2b5f29d3949bc71449d4d87dce57d5ef, type: 3}
   firePoint: {fileID: 7368613265820211276}
-  _debugFull: 1
+  _debugFull: 0
 --- !u!114 &3500762300502670963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,3 +249,52 @@ MonoBehaviour:
   parryWindow: 0.2
   cooldownTime: 1
   launchKey: 102
+--- !u!95 &8744845146787423748
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343041688947082025}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7a1e4d42adda1e246aef6752028d9a90, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8838388039309662857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343041688947082025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff8f935420815e74796661d55f7a04fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshair: {fileID: 5008681486531990139, guid: 90b0a216889bfe0409867933fb8748d8, type: 3}
+--- !u!114 &-6448499006872503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3343041688947082025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df5af75f25a0084a97170db86187387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  invincibilityDuration: 1
+  invincibleMaterial: {fileID: 0}
+  refreshOnRepeatedHit: 1

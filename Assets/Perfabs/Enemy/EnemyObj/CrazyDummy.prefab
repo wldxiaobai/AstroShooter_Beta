@@ -161,20 +161,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfdb2b12d9163e47a26299ca599d263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
-  decisionInterval: 0.4
+  maxHealth: 150
+  decisionInterval: 0.2
   autoStartAI: 1
   autoDestroyOnDeath: 1
   firePoint: {fileID: 2182871189045721686}
   bulletPrefab: {fileID: 2690527094827659821, guid: 38fdc4d7ceb3b9847b4ad8dfc31c7e48, type: 3}
   bulletSpeed: 12
-  dashDistance: 10
-  dashTime: 0.7
-  preferDashDistance: 10
+  dashDistance: 8
+  dashTime: 0.6
+  preferDashDistance: 8
   idleApproachSpeed: 3
-  idleApproachStopDistance: 7
-  explosionPrefab: {fileID: 0}
-  explosionSfx: {fileID: 0}
+  idleApproachStopDistance: 4
+  explosionPrefab: {fileID: 9189071138179262545, guid: 3a66c17fd2841004da03333fb5654b2c, type: 3}
+  explosionSfx: {fileID: 8300000, guid: ce4e7b3fe559ccb44a42542f6de94c71, type: 3}
   sfxVolume: 1
   disableCollidersOnDeath: 1
   shakeDuration: 0.75

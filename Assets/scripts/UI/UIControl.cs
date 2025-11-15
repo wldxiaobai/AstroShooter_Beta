@@ -9,23 +9,19 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class UIControl : Singleton<UIControl>
 {
-    [SerializeField] private GameObject HBar; //血条预制体
+    [Header("血条预制体")]
+    [SerializeField] private GameObject HBarPerfab; 
+    [Header("充能UI预制体")]
+    [SerializeField] private GameObject energyUIPrefab; 
 
     private GameObject existingHBar;
+    private GameObject existingEBar;
 
-    private void OnEnable()
-    {
-        // 监听场景完成加载事件
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+    private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 进入关卡时生成血条
+        // 进入关卡时生成血条与充能条
         if (SceneDatabaseAPI.TryGetSceneCategory(scene.name, out SceneCategory cat) && cat == SceneCategory.Level)
         {
             if (existingHBar != null)
@@ -33,7 +29,14 @@ public class UIControl : Singleton<UIControl>
                 Destroy(existingHBar);
                 existingHBar = null;
             }
-            existingHBar = Instantiate(HBar);
+            existingHBar = Instantiate(HBarPerfab);
+
+            if (existingEBar != null)
+            {
+                Destroy(existingEBar);
+                existingEBar = null;
+            }
+            existingEBar = Instantiate(energyUIPrefab);
         }
     }
 }

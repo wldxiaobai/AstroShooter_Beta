@@ -112,7 +112,7 @@ public class ParrySystem : MonoBehaviour
 
         // 通知能量系统：防反成功，置为充满（或按需求改为 AddEnergy）
         if (energySystem != null)
-            energySystem.SetFull(true);
+            energySystem.SetFull();
 
         Debug.Log("防反成功！销毁了: " + other.name);
     }
@@ -130,7 +130,7 @@ public class ParrySystem : MonoBehaviour
         Destroy(other);
 
         if (energySystem != null)
-            energySystem.SetFull(true);
+            energySystem.SetFull();
 
         Debug.Log("防反成功！销毁了: " + other.name);
     }

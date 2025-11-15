@@ -8,3 +8,6 @@ Gamejam做的飞行射击游戏
 - [敌怪的行动](./Docs/EnemyAction.md)
 - [敌怪的死亡](./Docs/EnemyDeath.md)
 - [敌怪的僵直](./Docs/EnemyInterrupted.md)
+
+## 更新日志
+- [beta_0.010](./Docs/Update/beta%200.010.md)

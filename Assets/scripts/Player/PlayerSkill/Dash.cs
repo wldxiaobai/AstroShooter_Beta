@@ -79,12 +79,6 @@ public class Dash : MonoBehaviour
         if (inputDirection.magnitude > 0.1f)
         {
             lastMoveDirection = inputDirection.normalized;
-
-            // 如果角色有精灵渲染器，可以根据方向翻转精灵
-            if (playerRenderer != null && horizontal != 0)
-            {
-                playerRenderer.flipX = horizontal < 0;
-            }
         }
 
         // 如果没有输入但有速度，使用速度方向
@@ -94,16 +88,28 @@ public class Dash : MonoBehaviour
         }
     }
 
+    // 新增：获取指向鼠标的单位方向
+    private Vector2 GetMouseAimDirection()
+    {
+        Camera cam = Camera.main;
+        if (cam == null) return Vector2.zero;
+
+        Vector3 mouseWorld = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dir = (Vector2)mouseWorld - (Vector2)transform.position;
+        if (dir.sqrMagnitude < 0.0001f) return Vector2.zero;
+        return dir.normalized;
+    }
+
     void StartDash()
     {
-        // 如果没有移动方向，使用角色右方
-        if (lastMoveDirection == Vector2.zero)
-        {
-            lastMoveDirection = Vector2.right;
-        }
+        // 改为优先朝鼠标方向冲刺；若不可用则回退到上次移动方向或向右
+        Vector2 mouseDir = GetMouseAimDirection();
+        Vector2 dashDir = mouseDir != Vector2.zero
+            ? mouseDir
+            : (lastMoveDirection != Vector2.zero ? lastMoveDirection : Vector2.right);
 
         // 开始冲刺协程
-        StartCoroutine(PerformDash(lastMoveDirection));
+        StartCoroutine(PerformDash(dashDir));
     }
 
     IEnumerator PerformDash(Vector2 direction)
@@ -183,14 +189,8 @@ public class Dash : MonoBehaviour
             playerRenderer.material = invincible ? invincibleMaterial : originalMaterial;
         }
 
-        // 方法2：通过禁用碰撞体实现无敌（简单但可能影响其他碰撞）
-        if (playerCollider != null)
-        {
-            playerCollider.enabled = !invincible;
-        }
-
-        // 方法3：使用标签而不是图层
-        // gameObject.tag = invincible ? "Invincible" : "Player";
+        // 使用标签标记无敌状态，便于其他脚本检测
+        gameObject.tag = invincible ? "Invincible" : "Player";
     }
 
     IEnumerator StartCooldown()

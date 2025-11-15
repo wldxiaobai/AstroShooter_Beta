@@ -58,4 +58,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f87f6819bf89a04797f3a553b04128c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HBar: {fileID: 3777683655822157746, guid: ba102e2de6d67284a96afb397a5392ca, type: 3}
+  HBarPerfab: {fileID: 3777683655822157746, guid: ba102e2de6d67284a96afb397a5392ca, type: 3}
+  energyUIPrefab: {fileID: 6330141998770370732, guid: f7295c4f486d3be4cb0e9255887c01d3, type: 3}

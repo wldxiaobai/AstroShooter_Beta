@@ -1,5 +1,8 @@
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class EnergyChargeSystem : MonoBehaviour
 {
@@ -11,8 +14,21 @@ public class EnergyChargeSystem : MonoBehaviour
     public Transform firePoint;                    // 发射点
     [SerializeField] private bool _debugFull = false; // 调试用，启动时是否满能量
 
+    // 获取当前能量
+    public int CurrentEnergy => currentEnergy;
     private int currentEnergy = 0;                 // 当前充能值
+
+    // 获取是否充满
+    public bool IsFull => full;
     private bool full = false;                     // 是否充满
+
+    // 能量变化事件 (currentEnergy, maxEnergy)
+    public static event System.Action<int, int> OnEnergyChanged;
+    private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+    private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
+
+    // 场景加载时更新能量显示
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) => SetEnergy(currentEnergy);
 
     void Start()
     {
@@ -26,16 +42,10 @@ public class EnergyChargeSystem : MonoBehaviour
     void Update()
     {
         // 调试用，启动时满能量
-        if (_debugFull) currentEnergy = maxEnergy;
-
-        // 如果Full为true，强制设置能量为最大值
-        if (full && currentEnergy != maxEnergy)
-        {
-            currentEnergy = maxEnergy;
-        }
+        if (_debugFull) SetFull();
 
         // 检测发射巨大子弹
-        if (Input.GetKeyDown(launchKey) && currentEnergy >= maxEnergy)
+        if (Input.GetKeyDown(launchKey) && full)
         {
             LaunchHugeBullet();
         }
@@ -44,48 +54,21 @@ public class EnergyChargeSystem : MonoBehaviour
     // amount 默认 -1 表示使用 energyPerHit
     public void AddEnergy(int amount = -1)
     {
-        // 如果已满或Full为true，则不再增加能量
-        if (currentEnergy >= maxEnergy || full)
-            return;
+        // 如果已满，则不再增加能量
+        if (full) return;
 
         int addAmount = (amount == -1) ? energyPerHit : amount;
-        currentEnergy += addAmount;
-        if (currentEnergy > maxEnergy)
-            currentEnergy = maxEnergy;
+        SetEnergy(currentEnergy + addAmount);
     }
 
-    public void SetFull(bool isFull)
-    {
-        full = isFull;
-        if (full)
-        {
-            currentEnergy = maxEnergy;
-        }
-    }
-
-    public int GetCurrentEnergy()
-    {
-        return currentEnergy;
-    }
-
-    // 获取是否充满
-    public bool IsFull()
-    {
-        return full;
-    }
+    public void SetFull() => SetEnergy(maxEnergy);
 
     // 直接设置能量值（会被限制在 0..maxEnergy）
     public void SetEnergy(int energy)
     {
         currentEnergy = Mathf.Clamp(energy, 0, maxEnergy);
         full = (currentEnergy >= maxEnergy);
-    }
-
-    // 重置能量
-    public void ResetEnergy()
-    {
-        currentEnergy = 0;
-        full = false;
+        OnEnergyChanged?.Invoke(currentEnergy, maxEnergy);
     }
 
     void LaunchHugeBullet()
@@ -115,8 +98,7 @@ public class EnergyChargeSystem : MonoBehaviour
             rb.velocity = new Vector2(deltaX, deltaY).normalized * 15f;
 
             // 重置能量
-            currentEnergy = 0;
-            full = false;
+            SetEnergy(0);
 
             Debug.Log("发射巨大子弹！");
         }
